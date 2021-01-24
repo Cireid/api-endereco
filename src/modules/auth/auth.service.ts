@@ -23,7 +23,7 @@ export class AuthService {
             return null;
         }
 
-        const { password, ...result } = user['dataValues'];
+        const { senha, ...result } = user['dataValues'];
         return result;
     }
 
@@ -33,11 +33,11 @@ export class AuthService {
     }
 
     public async create(user) {
-        const pass = await this.hashPassword(user.password);
+        const pass = await this.hashPassword(user.senha);
 
-        const newUser = await this.userService.store({ ...user, password: pass });
+        const newUser = await this.userService.store({ ...user, senha: pass });
 
-        const { password, ...result } = newUser['dataValues'];
+        const { senha, ...result } = newUser['dataValues'];
 
         const token = await this.generateToken(result);
 
