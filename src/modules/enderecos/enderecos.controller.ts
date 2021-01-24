@@ -7,17 +7,17 @@ import { EnderecoDTO } from './dto/endereco.dto';
 export class EnderecosController {
     constructor(private readonly enderecoService: EnderecosService) {}
 
-    @Get('all')
+    @Get('todos')
     async all() {
         return await this.enderecoService.all();
     }
 
-    @Post('store')
+    @Post('guardar')
     async store(@Body() endereco: EnderecoDTO): Promise<Endereco> {
         return await this.enderecoService.store(endereco)
     }
 
-    @Get('show/:id')
+    @Get('mostrar/:id')
     async show(@Param('id') id: string): Promise<Endereco> {
         const endereco = await this.enderecoService.show(id);
 
@@ -27,7 +27,7 @@ export class EnderecosController {
         return endereco;
     }
 
-    @Get('show/cep/:cep')
+    @Get('mostrar/cep/:cep')
     async showByCep(@Param('cep') cep: string): Promise<Endereco> {
         const endereco = await this.enderecoService.showByCep(cep);
 
@@ -37,7 +37,7 @@ export class EnderecosController {
         return endereco;
     }
 
-    @Put('update/:id')
+    @Put('editar/:id')
     async update(@Param('id') id: string, @Body() endereco: EnderecoDTO): Promise<Endereco> {
         const { numberOfAffectedRows, updatedEndereco } = await this.enderecoService.update(id, endereco);
         
@@ -47,7 +47,7 @@ export class EnderecosController {
         return updatedEndereco;
     }
 
-    @Delete('delete/:id')
+    @Delete('apagar/:id')
     async delete(@Param('id') id: string) {
         const deleted = await this.enderecoService.delete(id);
 

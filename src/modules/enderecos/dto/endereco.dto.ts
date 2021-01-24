@@ -11,7 +11,7 @@ export class EnderecoDTO {
     readonly numero: string;
 
     @IsEmpty()
-    readonly complement: string;
+    readonly complemento: string;
 
     @IsNotEmpty()
     readonly cep: string;
